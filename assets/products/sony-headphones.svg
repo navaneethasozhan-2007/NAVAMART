@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sonyblue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="#f8f9fa"/>
+  <g transform="translate(100, 45)">
+    <!-- Headband Arch -->
+    <path d="M 25 150 C 25 50 175 50 175 150" fill="none" stroke="url(#sonyblue)" stroke-width="22" stroke-linecap="round"/>
+    <path d="M 40 130 C 40 65 160 65 160 130" fill="none" stroke="#334155" stroke-width="8" stroke-linecap="round"/>
+    <!-- Left Stem & Ear Cup -->
+    <rect x="18" y="145" width="14" height="40" rx="7" fill="#475569"/>
+    <ellipse cx="25" cy="205" rx="30" ry="48" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+    <ellipse cx="25" cy="205" rx="20" ry="36" fill="#0f172a"/>
+    <!-- Right Stem & Ear Cup -->
+    <rect x="168" y="145" width="14" height="40" rx="7" fill="#475569"/>
+    <ellipse cx="175" cy="205" rx="30" ry="48" fill="#1e293b" stroke="#eab308" stroke-width="2"/>
+    <ellipse cx="175" cy="205" rx="20" ry="36" fill="#0f172a"/>
+    <!-- Gold Sony Wordmark Accent -->
+    <rect x="162" y="152" width="12" height="3" fill="#eab308"/>
+  </g>
+</svg>

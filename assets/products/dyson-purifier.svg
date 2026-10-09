@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="#f8f9fa"/>
+  <g transform="translate(145, 30)">
+    <!-- Loop Amplifier (Hollow Oval) -->
+    <rect x="15" y="10" width="80" height="180" rx="40" fill="none" stroke="#f1f5f9" stroke-width="22"/>
+    <rect x="15" y="10" width="80" height="180" rx="40" fill="none" stroke="#d4af37" stroke-width="4"/>
+    <!-- Base Cylinder Filter -->
+    <rect x="10" y="195" width="90" height="135" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <!-- Mesh dots on base -->
+    <line x1="20" y1="230" x2="90" y2="230" stroke="#d4af37" stroke-width="2" stroke-dasharray="4 4"/>
+    <line x1="20" y1="250" x2="90" y2="250" stroke="#d4af37" stroke-width="2" stroke-dasharray="4 4"/>
+    <line x1="20" y1="270" x2="90" y2="270" stroke="#d4af37" stroke-width="2" stroke-dasharray="4 4"/>
+    <!-- LCD Screen -->
+    <circle cx="55" cy="215" r="10" fill="#0f172a"/>
+    <circle cx="55" cy="215" r="4" fill="#22c55e"/>
+  </g>
+</svg>

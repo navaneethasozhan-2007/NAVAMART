@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="#f8f9fa"/>
+  <g transform="translate(40, 60)">
+    <rect x="40" y="0" width="240" height="150" rx="8" fill="#111"/>
+    <!-- Keyboard perspective -->
+    <polygon points="20,150 300,150 320,230 0,230" fill="#262b33"/>
+    <!-- Keyboard area -->
+    <polygon points="45,158 275,158 290,210 30,210" fill="#181a1f"/>
+    <!-- Trackpad -->
+    <polygon points="120,214 200,214 204,228 116,228" fill="#1e2229"/>
+  </g>
+</svg>

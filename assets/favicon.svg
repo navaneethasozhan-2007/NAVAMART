@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2874f0"/>
+      <stop offset="100%" stop-color="#0b419b"/>
+    </linearGradient>
+    <linearGradient id="favGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe600"/>
+      <stop offset="100%" stop-color="#ff9900"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#favGrad)"/>
+  <!-- Bag shape -->
+  <rect x="14" y="22" width="36" height="34" rx="8" fill="url(#favGold)"/>
+  <path d="M 23 22 C 23 12 41 12 41 22" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <!-- Lightning spark -->
+  <polygon points="34,28 26,40 33,40 29,50 40,36 33,36" fill="#0f172a"/>
+</svg>

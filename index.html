@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAVAMART - India's Favorite Online Shopping Destination | Amazon & Flipkart Style</title>
+  <meta name="description"
+    content="Shop online for Flagship Mobiles, Laptops, Audio, Smart Home Appliances, Fashion & Groceries on NAVAMART with Price Bargaining, Gadget Rentals & Lightning Fast Delivery.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-notice-bar">
+    <div class="container top-notice-inner">
+      <div class="top-notice-left">
+        <span class="top-notice-pill">⚡ MEGA FESTIVAL LIVE</span>
+        <span class="top-notice-text">Use code <strong>NAVAFIRST</strong> for flat 20% off • AI Price Bargaining &
+          Gadget Rentals Active!</span>
+      </div>
+      <div class="top-notice-right">
+        <a href="javascript:void(0)" onclick="openStoreInventoryModal()"><i class="bi bi-shop"
+            style="color: #ff9f00;"></i> Nearby Stores (2-Hr Pickup)</a>
+        <span class="notice-sep">•</span>
+        <a href="javascript:void(0)" onclick="openNotificationModal()"><i class="bi bi-bell-fill"
+            style="color: #ef4444;"></i> Founder Dispatch Logs</a>
+        <span class="notice-sep">•</span>
+        <a href="javascript:void(0)" onclick="openOrdersModal()"><i class="bi bi-box-seam"></i> Track Orders</a>
+        <span class="notice-sep">•</span>
+        <a href="#help"><i class="bi bi-headset"></i> 24x7 Support</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Sticky Header -->
+  <header class="main-header">
+    <div class="container navbar-inner">
+      <!-- Brand Logo -->
+      <a href="/" class="brand-logo" title="NAVAMART - Explore Plus">
+        <img src="assets/logo.svg" alt="NAVAMART">
+      </a>
+
+      <!-- Location / Pincode Delivery Trigger -->
+      <div class="pincode-trigger" id="pincodeTriggerBtn" title="Change delivery location">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div class="pin-text-group">
+          <div class="pin-line-1">Delivering to</div>
+          <div class="pin-line-2" id="headerPincodeText">Bengaluru 560001 <i class="bi bi-chevron-down"
+              style="font-size: 10px;"></i></div>
+        </div>
+      </div>
+
+      <!-- Mega Search Bar -->
+      <div class="search-container">
+        <div class="search-box">
+          <select id="searchCategorySelect" class="search-category-select" title="Filter by category">
+            <option value="all">All Departments</option>
+          </select>
+          <div class="search-input-wrapper">
+            <input type="text" id="navSearchInput" class="search-input"
+              placeholder="Search for products, brands, smartphones, fashion, laptops and more..." autocomplete="off">
+            <button id="searchClearBtn" class="search-clear-btn" title="Clear search">✕</button>
+          </div>
+          <button id="navSearchBtn" class="search-btn" title="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+
+        <!-- Search Auto-suggest Dropdown -->
+        <div id="searchSuggestionsBox" class="search-suggestions"></div>
+      </div>
+
+      <!-- Nav Actions (Right) -->
+      <div class="nav-actions">
+        <!-- Customer Profile Dropdown & Login Trigger -->
+        <div class="account-dropdown-wrapper">
+          <button id="userAccountBtn" class="nav-link-btn profile-trigger-btn" title="Account & Profile">
+            <div class="profile-icon-wrap">
+              <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="profile-text-details">
+              <span class="nav-link-sub" id="userGreetingSub">Hello, Sign In</span>
+              <span class="nav-link-title" id="userAccountName">Profile <i class="bi bi-chevron-down"
+                  style="font-size: 10px;"></i></span>
+            </div>
+          </button>
+          <div class="account-dropdown-menu">
+            <!-- Profile Welcome Card -->
+            <div class="profile-menu-header">
+              <div class="profile-avatar-circle">
+                <i class="bi bi-person-fill"></i>
+              </div>
+              <div class="profile-header-info">
+                <div class="profile-welcome-text">Welcome to NAVAMART</div>
+                <div class="profile-welcome-sub">Orders, bargains & local pickup</div>
+              </div>
+            </div>
+
+            <!-- Login / Register CTA -->
+            <div class="profile-auth-action" onclick="openLoginModal()">
+              <button class="profile-signin-btn">
+                <i class="bi bi-box-arrow-in-right"></i> <span id="loginMenuLabel">Sign In / Register</span>
+              </button>
+            </div>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Shopping Activity Section -->
+            <div class="profile-section-label">MY SHOPPING</div>
+            <div class="account-dropdown-item" onclick="openOrdersModal()">
+              <div class="menu-item-icon-wrap blue"><i class="bi bi-box-seam"></i></div>
+              <div class="menu-item-text">
+                <span class="menu-item-title">My Orders & Live Tracking</span>
+                <span class="menu-item-desc">Track package, view dispatches</span>
+              </div>
+              <i class="bi bi-chevron-right menu-chevron"></i>
+            </div>
+            <div class="account-dropdown-item" onclick="document.getElementById('wishlistHeaderBtn').click()">
+              <div class="menu-item-icon-wrap rose"><i class="bi bi-heart"></i></div>
+              <div class="menu-item-text">
+                <span class="menu-item-title">Wishlist & Saved Items</span>
+                <span class="menu-item-desc">Saved favorites for quick buying</span>
+              </div>
+              <i class="bi bi-chevron-right menu-chevron"></i>
+            </div>
+
+            <div class="profile-menu-divider"></div>
+
+            <!-- Services Section -->
+            <div class="profile-section-label">SERVICES & ALERTS</div>
+            <div class="account-dropdown-item" onclick="openStoreInventoryModal()">
+              <div class="menu-item-icon-wrap amber"><i class="bi bi-shop"></i></div>
+              <div class="menu-item-text">
+                <span class="menu-item-title">Nearby Local Stores</span>
+                <span class="menu-item-desc">Instant 2-hour local pickup</span>
+              </div>
+              <i class="bi bi-chevron-right menu-chevron"></i>
+            </div>
+            <div class="account-dropdown-item" onclick="openNotificationModal()">
+              <div class="menu-item-icon-wrap purple"><i class="bi bi-send-check"></i></div>
+              <div class="menu-item-text">
+                <span class="menu-item-title">Founder Dispatch Logs</span>
+                <span class="menu-item-desc">Carrier SMS & Email notifications</span>
+              </div>
+              <i class="bi bi-chevron-right menu-chevron"></i>
+            </div>
+
+            <!-- Logout Item (Hidden when signed out) -->
+            <div class="account-dropdown-item logout-item" onclick="handleLogout()" id="logoutMenuItem"
+              style="display: none;">
+              <div class="menu-item-icon-wrap red"><i class="bi bi-box-arrow-right"></i></div>
+              <div class="menu-item-text">
+                <span class="menu-item-title" style="color: #ef4444; font-weight: 700;">Sign Out</span>
+                <span class="menu-item-desc">Log out of your account</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wishlist -->
+        <button id="wishlistHeaderBtn" class="wishlist-btn" title="My Wishlist">
+          <div class="wishlist-icon-wrap">
+            <i class="bi bi-heart"></i>
+            <span id="wishlistBadgeCount" class="badge-count">2</span>
+          </div>
+          <div class="wishlist-text-details">
+
+            <span class="nav-btn-title">Wishlist</span>
+          </div>
+        </button>
+
+        <!-- Cart Button -->
+        <button id="cartTriggerBtn" class="cart-trigger-btn" title="View Cart">
+          <div class="cart-icon-wrapper">
+            <i class="bi bi-cart3"></i>
+            <span id="cartBadgeCount" class="badge-count">0</span>
+          </div>
+          <div class="cart-text-details">
+            <span class="cart-label">My Cart</span>
+            <span id="cartHeaderTotal" class="cart-total">₹0</span>
+          </div>
+        </button>
+
+        <!-- Dark/Light Mode Switch -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Dark/Light Mode">
+          <i class="bi bi-moon-stars-fill"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Subnav Ribbon -->
+  <nav class="subnav-bar">
+    <div class="container subnav-inner">
+      <button class="all-menu-btn" onclick="resetAllFilters()">
+        <i class="bi bi-list" style="font-size: 18px;"></i> All Departments
+      </button>
+      <a href="#deals" class="subnav-link">
+        <i class="bi bi-fire" style="color: #ff9f00;"></i> Today's Deals <span class="subnav-pill">HOT</span>
+      </a>
+      <a href="javascript:void(0)" class="subnav-link" onclick="openStoreInventoryModal()">
+        <i class="bi bi-shop-window" style="color: #38bdf8;"></i> Local Stores (2-Hr Pickup)
+      </a>
+      <a href="javascript:void(0)" class="subnav-link" onclick="filterRentalsOnly()">
+        <i class="bi bi-arrow-repeat" style="color: #10b981;"></i> Rent Gadgets (From ₹119/Day)
+      </a>
+      <a href="javascript:void(0)" class="subnav-link" onclick="setCategoryFilter('mobiles')">
+        <i class="bi bi-phone"></i> Mobiles & Tablets
+      </a>
+      <a href="javascript:void(0)" class="subnav-link" onclick="setCategoryFilter('laptops')">
+        <i class="bi bi-laptop"></i> Laptops & Tech
+      </a>
+      <a href="javascript:void(0)" class="subnav-link" onclick="setCategoryFilter('audio')">
+        <i class="bi bi-headphones"></i> Audio & Wearables
+      </a>
+      <a href="javascript:void(0)" class="subnav-link" onclick="setCategoryFilter('fashion')">
+        <i class="bi bi-bag-heart"></i> Fashion Fest
+      </a>
+      <a href="javascript:void(0)" class="subnav-link" onclick="setCategoryFilter('gaming')">
+        <i class="bi bi-controller"></i> Gaming Hub
+      </a>
+      <div class="subnav-right-promo">
+        <i class="bi bi-robot"></i> NAVA AI Assistant Ready
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Quick Categories Strip (Flipkart Style Circles) -->
+    <section class="quick-categories-section">
+      <div class="container">
+        <div id="quickCategoriesContainer" class="quick-cat-scroll"></div>
+      </div>
+    </section>
+
+    <!-- Hero Carousel Section -->
+    <section class="hero-carousel-section">
+      <div class="container">
+        <div class="carousel-container" id="heroCarousel">
+          <!-- Slide 1: Electronics -->
+          <div class="carousel-slide active">
+            <img src="assets/banner-electronics.jpg" alt="Electronics Mega Sale" class="carousel-bg-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-tag">FLAGSHIP TECH MEGA SALE</span>
+              <h1 class="carousel-title">Next-Gen Gadgets & Flagship Smartphones</h1>
+              <p class="carousel-subtitle">Experience iPhone 16 Pro, Galaxy S25 Ultra & M4 MacBook Pro at exclusive
+                launch pricing with AI Price Bargaining & 0% EMI.</p>
+              <div style="display: flex; gap: 12px;">
+                <a href="javascript:void(0)" class="carousel-btn" onclick="setCategoryFilter('mobiles')">
+                  <span>Shop Tech Deals</span> <i class="bi bi-arrow-right"></i>
+                </a>
+                <a href="javascript:void(0)" class="carousel-btn"
+                  style="background: rgba(255,255,255,0.2); color: #fff; backdrop-filter: blur(8px);"
+                  onclick="openStoreInventoryModal()">
+                  <span>Local Store Stock</span> <i class="bi bi-geo-alt"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Fashion -->
+          <div class="carousel-slide">
+            <img src="assets/banner-fashion.jpg" alt="Fashion Shopping Festival" class="carousel-bg-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-tag" style="background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);">AUTUMN
+                WINTER COUTURE</span>
+              <h1 class="carousel-title">Runway Trends & Streetwear Icons</h1>
+              <p class="carousel-subtitle">Upgrade your wardrobe with Nike Jordans, Levi's Originals & Ray-Ban classics
+                at up to 60% off with Proof-Verified reviews.</p>
+              <a href="javascript:void(0)" class="carousel-btn" onclick="setCategoryFilter('fashion')">
+                <span>Explore Fashion</span> <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 3: Big Billion Festive -->
+          <div class="carousel-slide">
+            <img src="assets/banner-festive.jpg" alt="Mega Festive Steals" class="carousel-bg-img">
+            <div class="carousel-overlay"></div>
+            <div class="carousel-content">
+              <span class="carousel-tag" style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);">GRAND
+                FESTIVE CARNIVAL</span>
+              <h1 class="carousel-title">Unbeatable Savings on Everything You Love</h1>
+              <p class="carousel-subtitle">Instant ₹5,000 Bank Discounts, Free 1-Day Delivery, and verified NAVAMART
+                Assured warranty.</p>
+              <a href="javascript:void(0)" class="carousel-btn" onclick="resetAllFilters()">
+                <span>View All Offers</span> <i class="bi bi-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button class="carousel-nav-btn carousel-prev" id="carouselPrev" title="Previous Slide">
+            <i class="bi bi-chevron-left"></i>
+          </button>
+          <button class="carousel-nav-btn carousel-next" id="carouselNext" title="Next Slide">
+            <i class="bi bi-chevron-right"></i>
+          </button>
+
+          <!-- Carousel Indicators -->
+          <div class="carousel-indicators">
+            <span class="indicator-dot active"></span>
+            <span class="indicator-dot"></span>
+            <span class="indicator-dot"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deal of the Day / Lightning Deals Section -->
+    <section class="lightning-deals-section" id="deals">
+      <div class="container">
+        <div class="deals-card-wrapper">
+          <div class="deals-header">
+            <div class="deals-title-group">
+              <h2 class="deals-heading">
+                <i class="bi bi-lightning-charge-fill"></i> Lightning Steals & Deals of the Day
+              </h2>
+              <div class="countdown-timer-box">
+                <i class="bi bi-clock-history"></i>
+                <span>Ends in:</span>
+                <span class="countdown-numbers" id="dealsCountdown">05h : 42m : 18s</span>
+              </div>
+            </div>
+            <a href="javascript:void(0)" class="view-all-deals-btn" onclick="setDealsFilterOnly()">
+              View All Lightning Deals <i class="bi bi-arrow-right-short" style="font-size: 20px;"></i>
+            </a>
+          </div>
+
+          <div class="deals-horizontal-scroll" id="lightningDealsScroll"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Catalog: Sidebar Filters + Products Grid -->
+    <section class="main-catalog-section" id="catalog">
+      <div class="container catalog-layout">
+        <!-- Sidebar Filters -->
+        <aside class="filter-sidebar">
+          <div class="filter-sidebar-header">
+            <h3>Filters</h3>
+            <span class="clear-filters-btn" id="clearFiltersBtn">Clear All</span>
+          </div>
+
+          <!-- Category Filter -->
+          <div class="filter-block">
+            <h4 class="filter-block-title">Department</h4>
+            <div id="sidebarCategoryList"></div>
+          </div>
+
+          <!-- Price Range Filter -->
+          <div class="filter-block">
+            <h4 class="filter-block-title">Price Range</h4>
+            <div class="price-inputs-row">
+              <input type="text" class="price-input-box" value="₹0" readonly>
+              <span style="color: var(--text-muted);">-</span>
+              <input type="number" id="maxPriceInput" class="price-input-box" value="300000" min="1000" max="300000"
+                step="5000">
+            </div>
+            <input type="range" id="priceRangeSlider" class="price-range-slider" min="1000" max="300000" step="5000"
+              value="300000">
+          </div>
+
+          <!-- Special Modes Filter -->
+          <div class="filter-block">
+            <h4 class="filter-block-title">Innovative Features</h4>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" id="rentFilterCheck">
+              <span style="color: #10b981; font-weight: 700;"><i class="bi bi-arrow-repeat"></i> Rent & Try
+                Available</span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" id="assuredFilterCheck">
+              <span class="assured-filter-badge"><i class="bi bi-patch-check-fill" style="color: #ff9f00;"></i> NAVAMART
+                Assured™</span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="checkbox" id="dealsFilterCheck">
+              <span style="color: var(--accent-red); font-weight: 700;"><i class="bi bi-tag-fill"></i> Lightning Deal
+                Items</span>
+            </label>
+          </div>
+
+          <!-- Customer Rating Filter -->
+          <div class="filter-block">
+            <h4 class="filter-block-title">Customer Ratings</h4>
+            <label class="filter-checkbox-item">
+              <input type="radio" name="ratingFilter" value="4">
+              <span class="rating-filter-stars">★★★★☆</span> <span>4★ & above</span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="radio" name="ratingFilter" value="3">
+              <span class="rating-filter-stars">★★★☆☆</span> <span>3★ & above</span>
+            </label>
+            <label class="filter-checkbox-item">
+              <input type="radio" name="ratingFilter" value="0" checked>
+              <span>All Ratings</span>
+            </label>
+          </div>
+        </aside>
+
+        <!-- Catalog Products Area -->
+        <div class="catalog-main-content">
+          <div class="catalog-toolbar">
+            <div class="results-count-text" id="resultsCountDisplay">Showing products...</div>
+            <div class="sort-group">
+              <label for="sortSelect" class="sort-label">Sort by:</label>
+              <select id="sortSelect" class="sort-select">
+                <option value="popular">Popularity & Best Match</option>
+                <option value="price_asc">Price -- Low to High</option>
+                <option value="price_desc">Price -- High to Low</option>
+                <option value="rating">Customer Rating</option>
+                <option value="discount">Biggest Discount</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Product Cards Grid -->
+          <div class="products-grid" id="productsGrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Product Quick View Modal -->
+  <div class="modal-overlay" id="quickViewModal">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="quickViewCloseBtn" title="Close modal">✕</button>
+      <div id="quickViewContent"></div>
+    </div>
+  </div>
+
+  <!-- Cart Slide-Over Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3><i class="bi bi-bag-check-fill" style="color: #ff9f00;"></i> Shopping Cart</h3>
+      <button id="cartDrawerCloseBtn" title="Close cart">✕</button>
+    </div>
+    <div class="cart-drawer-body" id="cartDrawerBody"></div>
+    <div class="cart-drawer-footer" id="cartDrawerFooter"></div>
+  </div>
+
+  <!-- Multi-Step Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-box checkout-modal-box">
+      <button class="modal-close-btn" id="checkoutModalCloseBtn">✕</button>
+
+      <!-- Steps Indicator Bar -->
+      <div class="checkout-steps-bar">
+        <div class="step-indicator active" id="stepIndicator1">
+          <span class="step-number">1</span> <span>Address</span>
+        </div>
+        <div class="step-indicator" id="stepIndicator2">
+          <span class="step-number">2</span> <span>Delivery</span>
+        </div>
+        <div class="step-indicator" id="stepIndicator3">
+          <span class="step-number">3</span> <span>Payment</span>
+        </div>
+        <div class="step-indicator" id="stepIndicator4">
+          <span class="step-number">4</span> <span>Confirmation</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Address -->
+      <div class="checkout-step-content active" id="checkoutStep1">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 16px;">
+          1. Delivery Address
+        </h3>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="addrFullName" class="form-control" value=" " required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Mobile Number *</label>
+            <input type="text" id="addrPhone" class="form-control" value=" " required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Flat, House no., Building, Apartment *</label>
+          <input type="text" id="addrLine" class="form-control" value=" " required>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label">City *</label>
+            <input type="text" id="addrCity" class="form-control" value=" " required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pincode / ZIP *</label>
+            <input type="text" id="addrPincode" class="form-control" value=" " required>
+          </div>
+        </div>
+        <div style="text-align: right; margin-top: 14px;">
+          <button id="checkoutToStep2Btn"
+            style="background: var(--primary-blue); color: #fff; font-weight: 700; padding: 12px 28px; border-radius: var(--radius-sm);">
+            Deliver to This Address <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Delivery Speed -->
+      <div class="checkout-step-content" id="checkoutStep2">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 16px;">
+          2. Choose Delivery Speed
+        </h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <label
+            style="border: 2px solid var(--primary-blue); padding: 14px; border-radius: var(--radius-md); display: flex; align-items: center; gap: 12px; cursor: pointer; background: rgba(40,116,240,0.05);">
+            <input type="radio" name="shippingSpeed" value="express" checked style="accent-color: var(--primary-blue);">
+            <div>
+              <div style="font-weight: 800; color: var(--text-dark);"><i class="bi bi-lightning-charge-fill"
+                  style="color: #ff9f00;"></i> NAVAMART Lightning Delivery</div>
+              <div style="font-size: 12px; color: var(--accent-green); font-weight: 600;">Guaranteed Delivery Tomorrow
+                by 11:00 AM • FREE</div>
+            </div>
+          </label>
+          <label
+            style="border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md); display: flex; align-items: center; gap: 12px; cursor: pointer;">
+            <input type="radio" name="shippingSpeed" value="standard" style="accent-color: var(--primary-blue);">
+            <div>
+              <div style="font-weight: 700; color: var(--text-dark);">Standard Eco Delivery</div>
+              <div style="font-size: 12px; color: var(--text-muted);">Delivery in 2 - 3 Days • FREE</div>
+            </div>
+          </label>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+          <button id="checkoutBackStep1Btn" style="color: var(--text-muted); font-weight: 600;">← Back</button>
+          <button id="checkoutToStep3Btn"
+            style="background: var(--primary-blue); color: #fff; font-weight: 700; padding: 12px 28px; border-radius: var(--radius-sm);">
+            Continue to Payment <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: Payment Method -->
+      <div class="checkout-step-content" id="checkoutStep3">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 16px;">
+          3. Select Payment Method
+        </h3>
+        <div class="payment-methods-list">
+          <label class="payment-method-card selected">
+            <input type="radio" name="paymentMethod" value="UPI" checked>
+            <div class="payment-icon"><i class="bi bi-qr-code-scan"></i></div>
+            <div>
+              <div class="payment-title-text">UPI (Google Pay, PhonePe, Paytm, QR)</div>
+              <div class="payment-desc-text">Instant zero-fee payment with UPI QR or VPA</div>
+            </div>
+          </label>
+
+          <label class="payment-method-card">
+            <input type="radio" name="paymentMethod" value="Card">
+            <div class="payment-icon"><i class="bi bi-credit-card-2-front"></i></div>
+            <div>
+              <div class="payment-title-text">Credit / Debit Card</div>
+              <div class="payment-desc-text">Visa, MasterCard, RuPay, American Express</div>
+            </div>
+          </label>
+
+          <label class="payment-method-card">
+            <input type="radio" name="paymentMethod" value="NetBanking">
+            <div class="payment-icon"><i class="bi bi-bank"></i></div>
+            <div>
+              <div class="payment-title-text">Net Banking</div>
+              <div class="payment-desc-text">All major Indian & International banks supported</div>
+            </div>
+          </label>
+
+          <label class="payment-method-card">
+            <input type="radio" name="paymentMethod" value="COD">
+            <div class="payment-icon"><i class="bi bi-cash-stack"></i></div>
+            <div>
+              <div class="payment-title-text">Cash on Delivery (COD)</div>
+              <div class="payment-desc-text">Pay with cash or UPI at the time of doorstep delivery</div>
+            </div>
+          </label>
+        </div>
+
+        <div id="checkoutStep3Summary"></div>
+
+        <div style="display: flex; justify-content: space-between; margin-top: 24px;">
+          <button id="checkoutBackStep2Btn" style="color: var(--text-muted); font-weight: 600;">← Back</button>
+          <button id="completeOrderBtn"
+            style="background: linear-gradient(135deg, var(--accent-red) 0%, #ea580c 100%); color: #fff; font-weight: 800; padding: 14px 32px; border-radius: var(--radius-sm); font-size: 15px; box-shadow: 0 4px 14px rgba(251, 100, 27, 0.4);">
+            <i class="bi bi-lock-fill"></i> PAY & CONFIRM ORDER
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4: Confirmation Screen -->
+      <div class="checkout-step-content" id="checkoutStep4">
+        <div id="checkoutStep4Content"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Customer Login Modal -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-box" style="max-width: 440px; padding: 28px;">
+      <button class="modal-close-btn" id="loginModalCloseBtn">✕</button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <img src="assets/logo.svg" alt="NAVAMART" style="height: 38px; margin-bottom: 10px;">
+        <h3 style="font-size: 20px; font-weight: 800; color: var(--text-dark);">Sign In or Register</h3>
+        <p style="font-size: 12.5px; color: var(--text-muted);">Enter your Mobile Number or Email to proceed.</p>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mobile Number or Email *</label>
+        <div style="position: relative;">
+          <input type="text" id="loginIdentifierInput" class="form-control"
+            placeholder="+91 98765 43210 or yourname@gmail.com" value="+91 98765 43210" required>
+        </div>
+      </div>
+      <div class="form-group" id="loginOtpGroup" style="display: none;">
+        <label class="form-label">Enter 4-Digit OTP (Use: <strong>1234</strong>)</label>
+        <input type="text" id="loginOtpInput" class="form-control" placeholder="1234" maxlength="4">
+      </div>
+      <button id="loginSubmitBtn"
+        style="width: 100%; background: var(--accent-gold); color: #111827; font-weight: 800; font-size: 14px; padding: 12px; border-radius: var(--radius-sm); margin-top: 10px;">
+        CONTINUE & NOTIFY FOUNDER
+      </button>
+      <div
+        style="background: rgba(59, 130, 246, 0.08); border-radius: var(--radius-sm); padding: 10px; margin-top: 16px; font-size: 11.5px; color: var(--text-muted); text-align: center;">
+        <i class="bi bi-shield-check" style="color: var(--primary-blue);"></i> Real-time notification will be
+        automatically dispatched to Founder (<strong>+91 7418362054</strong>) on login.
+      </div>
+    </div>
+  </div>
+
+  <!-- Price Negotiation / Bargain Modal -->
+  <div class="modal-overlay" id="bargainModal">
+    <div class="modal-box" style="max-width: 500px; padding: 28px;">
+      <button class="modal-close-btn" id="bargainModalCloseBtn">✕</button>
+      <div style="text-align: center; margin-bottom: 16px;">
+        <span
+          style="background: rgba(245, 158, 11, 0.15); color: #ea580c; font-size: 11px; font-weight: 800; padding: 4px 12px; border-radius: 20px;">
+          🤝 NAVAMART AI DEAL MAKER
+        </span>
+        <h3 style="font-size: 22px; font-weight: 800; color: var(--text-dark); margin-top: 6px;">Bargain Your Price
+          Live!</h3>
+        <p style="font-size: 12.5px; color: var(--text-muted);">Propose your best price. Our AI Merchant will review
+          your offer in seconds!</p>
+      </div>
+
+      <div style="background: var(--bg-main); border-radius: var(--radius-md); padding: 14px; margin-bottom: 16px;">
+        <div id="bargainProductTitle" style="font-size: 13.5px; font-weight: 700; color: var(--text-dark);">Apple iPhone
+          16 Pro Max</div>
+        <div style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">
+          Listed Price: <strong id="bargainOriginalPriceDisplay" style="color: var(--text-dark);">₹1,44,900</strong>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Your Proposed Offer Price (₹) *</label>
+        <input type="number" id="bargainOfferInput" class="form-control"
+          placeholder="Enter what you want to pay (e.g. 135000)" style="font-size: 16px; font-weight: 700;">
+      </div>
+
+      <button id="submitBargainOfferBtn"
+        style="width: 100%; background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: #fff; font-weight: 800; padding: 12px; border-radius: var(--radius-sm); font-size: 14px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);">
+        <i class="bi bi-chat-quote-fill"></i> SUBMIT COUNTER-OFFER TO AI
+      </button>
+
+      <!-- Bargain Outcome Box -->
+      <div id="bargainOutcomeBox" style="display: none; margin-top: 16px;"></div>
+    </div>
+  </div>
+
+  <!-- Nearby Local Stores Modal -->
+  <div class="modal-overlay" id="storeInventoryModal">
+    <div class="modal-box" style="max-width: 650px; padding: 28px;">
+      <button class="modal-close-btn" id="storeInventoryModalCloseBtn">✕</button>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: var(--text-dark);"><i class="bi bi-shop"
+              style="color: var(--primary-blue);"></i> Nearby Partner Hubs & Stores</h3>
+          <p style="font-size: 12.5px; color: var(--text-muted);">Check real-time stock near your pincode for instant
+            2-Hour In-Store Pickup.</p>
+        </div>
+        <span class="store-distance-badge"><i class="bi bi-broadcast"></i> GPS Active</span>
+      </div>
+
+      <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <input type="text" id="storeSearchPincodeInput" class="form-control"
+          placeholder="Search pincode (e.g. 560001, 400001, 110001)" value="560001" style="font-size: 13px;">
+        <button id="storeSearchPincodeBtn"
+          style="background: var(--primary-blue); color: #fff; font-weight: 700; padding: 0 18px; border-radius: var(--radius-sm);">Check</button>
+      </div>
+
+      <div id="nearbyStoresListContainer" style="max-height: 400px; overflow-y: auto;"></div>
+    </div>
+  </div>
+
+  <!-- Founder & Customer Notification Dispatch Modal -->
+  <div class="modal-overlay" id="notificationModal">
+    <div class="modal-box" style="max-width: 720px; padding: 28px;">
+      <button class="modal-close-btn" id="notificationModalCloseBtn">✕</button>
+      <div
+        style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; border-bottom: 1px solid var(--border-light); padding-bottom: 12px;">
+        <div>
+          <h3 style="font-size: 20px; font-weight: 800; color: var(--text-dark);">
+            <i class="bi bi-bell-fill" style="color: #ef4444;"></i> Real-Time Notification Center
+          </h3>
+          <p style="font-size: 12.5px; color: var(--text-muted);">
+            Live carrier SMS, Email & WhatsApp dispatches sent to Founder & Customer.
+          </p>
+        </div>
+        <div
+          style="text-align: right; background: var(--bg-main); padding: 8px 14px; border-radius: var(--radius-md); font-size: 11.5px;">
+          <div style="font-weight: 700; color: var(--text-dark);">Founder Contact:</div>
+          <div style="color: var(--primary-blue); font-weight: 800;">+91 7418362054</div>
+          <div style="color: var(--text-muted);">navaneethasozhan2007@gmail.com</div>
+        </div>
+      </div>
+
+      <div id="notificationsLogContainer"
+        style="max-height: 420px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
+    </div>
+  </div>
+
+  <!-- Past Orders Modal -->
+  <div class="modal-overlay" id="ordersModal">
+    <div class="modal-box" style="max-width: 800px; padding: 24px;">
+      <button class="modal-close-btn" id="ordersModalCloseBtn">✕</button>
+      <h3
+        style="font-size: 20px; font-weight: 800; color: var(--text-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <i class="bi bi-box-seam" style="color: var(--primary-blue);"></i> My Past Orders & Live Tracking
+      </h3>
+      <div id="ordersListContainer"></div>
+    </div>
+  </div>
+
+  <!-- Pincode Delivery Modal -->
+  <div class="modal-overlay" id="pincodeModal">
+    <div class="modal-box" style="max-width: 440px; padding: 28px;">
+      <button class="modal-close-btn" id="pincodeModalCloseBtn">✕</button>
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px;">
+        <i class="bi bi-geo-alt-fill" style="color: var(--accent-gold);"></i> Choose Delivery Location
+      </h3>
+      <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+        Enter your 6-digit delivery pincode to check exact delivery dates and express courier availability.
+      </p>
+      <div style="display: flex; gap: 8px; margin-bottom: 14px;">
+        <input type="text" id="pincodeModalInput" class="form-control" placeholder="e.g. 560001 or 400001"
+          maxlength="6">
+        <button id="applyPincodeBtn"
+          style="background: var(--accent-gold); color: #111827; font-weight: 800; padding: 0 20px; border-radius: var(--radius-sm);">Check</button>
+      </div>
+      <div style="font-size: 11.5px; color: var(--text-muted);">
+        Popular hubs: <strong>560001</strong> (Bengaluru), <strong>400001</strong> (Mumbai), <strong>110001</strong>
+        (Delhi), <strong>600001</strong> (Chennai)
+      </div>
+    </div>
+    <!-- Price History Volatility & Tracker Modal -->
+    <div class="modal-overlay" id="priceHistoryModal">
+      <div class="modal-box price-history-modal-box">
+        <button class="modal-close-btn" id="priceHistoryModalCloseBtn" title="Close">✕</button>
+        <div id="priceHistoryModalContent"></div>
+      </div>
+    </div>
+
+    <!-- Quick Rental Tenure Selector Modal -->
+    <div class="modal-overlay" id="rentalModal">
+      <div class="modal-box rental-modal-box">
+        <button class="modal-close-btn" id="rentalModalCloseBtn" title="Close">✕</button>
+        <div id="rentalModalContent"></div>
+      </div>
+    </div>
+
+    <!-- Floating AI Chatbot Widget -->
+    <div class="ai-chatbot-widget">
+      <!-- Chat Window -->
+      <div class="ai-chat-window" id="aiChatWindow">
+        <div class="ai-chat-header">
+          <div class="ai-chat-title-group">
+            <div class="ai-avatar-circle"><i class="bi bi-robot"></i></div>
+            <div>
+              <div style="font-weight: 800; font-size: 14px;">NAVA AI Genius</div>
+              <div style="font-size: 11px; color: #86efac; display: flex; align-items: center; gap: 4px;">
+                <span style="width: 6px; height: 6px; background: #86efac; border-radius: 50%;"></span> Online • Smart
+                Assistant
+              </div>
+            </div>
+          </div>
+          <button id="aiChatCloseBtn" style="color: #cbd5e1; font-size: 18px;">✕</button>
+        </div>
+
+        <div class="ai-chat-body" id="aiChatBody">
+          <div class="chat-msg bot">
+            <div class="chat-bubble">
+              👋 Hello! I am <strong>NAVA AI</strong>, your personal shopping genius. How can I assist you?
+              <div class="chat-chips-row">
+                <span class="chat-chip-btn" onclick="sendChatPrompt('Track my order')">⚡ Track Order</span>
+                <span class="chat-chip-btn" onclick="sendChatPrompt('How to bargain price')">🤝 Price Bargain</span>
+                <span class="chat-chip-btn" onclick="sendChatPrompt('Rent digital gadgets')">🎮 Rent Gadgets</span>
+                <span class="chat-chip-btn" onclick="sendChatPrompt('Nearby store stock')">🏬 Local Stores</span>
+                <span class="chat-chip-btn" onclick="sendChatPrompt('Founder contact info')">👤 Founder Contact</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-chat-footer">
+          <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Ask NAVA AI anything..."
+            autocomplete="off">
+          <button id="aiChatSendBtn" class="ai-chat-send-btn" title="Send message"><i
+              class="bi bi-send-fill"></i></button>
+        </div>
+      </div>
+
+      <!-- Bubble Button -->
+      <button class="ai-chat-bubble-btn" id="aiChatBubbleBtn" title="Chat with NAVA AI">
+        <i class="bi bi-chat-dots-fill"></i>
+        <span class="ai-badge-pulse"></span>
+      </button>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="main-footer" id="help">
+      <div class="back-to-top-btn" id="backToTopBtn">
+        Back to top <i class="bi bi-chevron-up"></i>
+      </div>
+
+      <div class="container footer-top-grid">
+        <div class="footer-col">
+          <h4>About NAVAMART</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers at Navamart</a></li>
+            <li><a href="#">Press & Newsroom</a></li>
+            <li><a href="#">Navamart AI & Innovation</a></li>
+            <li><a href="javascript:void(0)" onclick="openNotificationModal()">Founder Dispatch Center</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect with Us</h4>
+          <ul>
+            <li><a href="#"><i class="bi bi-facebook"></i> Facebook</a></li>
+            <li><a href="#"><i class="bi bi-twitter-x"></i> X (Twitter)</a></li>
+            <li><a href="#"><i class="bi bi-instagram"></i> Instagram</a></li>
+            <li><a href="https://wa.me/917418362054" target="_blank"><i class="bi bi-whatsapp"></i> Founder WhatsApp</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Services & Programs</h4>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="filterRentalsOnly()">Rent & Try Electronics</a></li>
+            <li><a href="javascript:void(0)" onclick="openStoreInventoryModal()">Local Store Pickup</a></li>
+            <li><a href="#">Sell on NAVAMART</a></li>
+            <li><a href="#">Fulfilment by Navamart (FBN)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Let Us Help You</h4>
+          <ul>
+            <li><a href="javascript:void(0)" onclick="openOrdersModal()">Your Account & Orders</a></li>
+            <li><a href="#">Returns & 7-Day Replacement</a></li>
+            <li><a href="#">Proof-Verified Reviews</a></li>
+            <li><a href="#">Direct Founder Support (+91 7418362054)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="container footer-middle-bar">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <img src="assets/logo.svg" alt="NAVAMART" style="height: 32px;">
+          <span style="font-size: 12px; color: #9ca3af;">English (India) • Founder: Navaneetha Sozhan (+91
+            7418362054)</span>
+        </div>
+        <div style="display: flex; gap: 18px; font-size: 22px; color: #9ca3af;">
+          <i class="bi bi-shield-check" title="100% Purchase Protection"></i>
+          <i class="bi bi-truck" title="Lightning Express Delivery"></i>
+          <i class="bi bi-credit-card" title="Secure Encrypted Payments"></i>
+          <i class="bi bi-arrow-repeat" title="7-Day Easy Returns"></i>
+        </div>
+      </div>
+
+      <div class="container footer-bottom-copy">
+        <p>© 2026, NAVAMART.com, Inc. or its affiliates. All rights reserved.</p>
+        <p style="margin-top: 4px; color: #6b7280; font-size: 11px;">Conditions of Use & Sale • Founder:
+          navaneethasozhan2007@gmail.com • Direct Hotline: +91 7418362054</p>
+      </div>
+    </footer>
+
+    <!-- Client Script -->
+    <script src="js/app.js"></script>
+
+    <script>
+      function setDealsFilterOnly() {
+        const dealsCheckbox = document.getElementById('dealsFilterCheck');
+        if (dealsCheckbox) {
+          dealsCheckbox.checked = true;
+          dealsCheckbox.dispatchEvent(new Event('change'));
+        }
+        document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      function filterRentalsOnly() {
+        const rentCheck = document.getElementById('rentFilterCheck');
+        if (rentCheck) {
+          rentCheck.checked = true;
+          rentCheck.dispatchEvent(new Event('change'));
+        }
+        document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+      }
+    </script>
+</body>
+
+</html>

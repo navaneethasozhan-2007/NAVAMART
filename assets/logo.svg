@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="goldSpark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe600"/>
+      <stop offset="100%" stop-color="#ff9900"/>
+    </linearGradient>
+  </defs>
+  <!-- Shopping Bag / Cart Spark Icon -->
+  <g transform="translate(6, 10)">
+    <rect x="0" y="8" width="28" height="28" rx="7" fill="url(#goldSpark)"/>
+    <path d="M 7 8 C 7 1 21 1 21 8" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+    <!-- Fast Lightning Spark inside Bag -->
+    <polygon points="16,13 10,23 15,23 12,31 20,20 15,20" fill="#131921"/>
+  </g>
+  <!-- Text Brand Name -->
+  <text x="42" y="34" font-family="'Plus Jakarta Sans', 'Outfit', 'Inter', sans-serif" font-weight="900" font-size="26" fill="url(#logoGrad)" letter-spacing="-0.5">
+    NAVA<tspan fill="url(#goldSpark)">MART</tspan>
+  </text>
+  <!-- Subtitle Tagline -->
+  <text x="43" y="47" font-family="'Inter', sans-serif" font-size="9.5" font-style="italic" font-weight="600" fill="#ffe500" letter-spacing="0.4">
+    Explore <tspan fill="#ffffff">Plus</tspan>
+    <tspan fill="#ff9f00" font-style="normal" font-weight="bold">✦</tspan>
+  </text>
+  <!-- Amazon/Flipkart Smile Curve Underneath -->
+  <path d="M 125 43 Q 165 52 205 44" fill="none" stroke="url(#goldSpark)" stroke-width="2.8" stroke-linecap="round"/>
+  <polygon points="208,42 203,47 206,40" fill="#ff9900"/>
+</svg>

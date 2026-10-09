@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="#f8f9fa"/>
+  <g transform="translate(130, 40)">
+    <!-- Orange Ribbed Ocean Band -->
+    <path d="M 30 0 L 110 0 L 110 80 L 30 80 Z" fill="#f97316"/>
+    <path d="M 30 240 L 110 240 L 110 320 L 30 320 Z" fill="#f97316"/>
+    <!-- Grooves on Band -->
+    <line x1="30" y1="20" x2="110" y2="20" stroke="#ea580c" stroke-width="4"/>
+    <line x1="30" y1="45" x2="110" y2="45" stroke="#ea580c" stroke-width="4"/>
+    <line x1="30" y1="270" x2="110" y2="270" stroke="#ea580c" stroke-width="4"/>
+    <line x1="30" y1="295" x2="110" y2="295" stroke="#ea580c" stroke-width="4"/>
+    <!-- Titanium Watch Case -->
+    <rect x="15" y="70" width="110" height="180" rx="32" fill="#d1d5db" stroke="#9ca3af" stroke-width="3"/>
+    <rect x="25" y="80" width="90" height="160" rx="24" fill="#000"/>
+    <!-- Digital Crown -->
+    <rect x="125" y="105" width="12" height="36" rx="6" fill="#ea580c" stroke="#9ca3af" stroke-width="2"/>
+    <!-- Orange Action Button -->
+    <rect x="3" y="115" width="12" height="40" rx="6" fill="#ea580c"/>
+    <!-- Watch Face UI -->
+    <circle cx="70" cy="160" r="32" fill="none" stroke="#22c55e" stroke-width="4" stroke-dasharray="140 30"/>
+    <text x="70" y="150" fill="#ffffff" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">10:09</text>
+    <text x="70" y="175" fill="#f97316" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">72 BPM</text>
+  </g>
+</svg>
